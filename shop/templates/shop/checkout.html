@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% block poster %}
+
+{% endblock poster %}
+
+{% endblock title %}
+
+
+{% block main %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="box-element">
+                <a href="{% utl 'cart' %}" class="btn products__form-btn">Назад в карзину</a>
+                <hr>
+                <h3>Заказанные товары</h3>
+                <hr>
+                <div class="cart-row">
+
+
+                </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-lg-6"></div>
+        </div>
+    </div>
+</main>
+{% endblock main %}

@@ -1,0 +1,64 @@
+{% load static %}
+{% load shop_tags %}
+<footer class="footer">
+    <div class="container">
+        <div class="footer__content">
+            <div class="footer__navigate">
+                <div class="footer__navigate-part">
+                    <h2 class="footer__navigate-title">НАВИГАЦИЯ</h2>
+                    <div class="footer__navigate-lists">
+                        {% get_categories as categories %}
+                        {% for category in categories|slice:"3" %}
+                        <ul class="footer__navigate-list">
+                            <li><a href="{{ category.get_absolute_url }}" class="footer__navigate-links">
+                                {{ category.title }}</a></li>
+                        </ul>
+                        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+                        <br> <!-- Добавляем разрыв строки после каждых трех категорий -->
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <!-- /.footer__navigate-part -->
+                <div class="footer__navigate-part _right">
+                    <a href="{% url 'index' %}" class="footer__logo">MB</a>
+                    <p class="footer__adress">Вещевой рынок куйлюк, магазин 44</p>
+                </div>
+                <!-- /.footer__navigate-part _right -->
+            </div>
+            <!-- /.footer__navigate -->
+
+            <div class="footer__social">
+                <ul class="footer__navigate-list _short">
+                    <li><a href="#!" class="footer__navigate-links">Акция</a></li>
+                    <li><a href="#!" class="footer__navigate-links">Новинки</a></li>
+                </ul>
+
+                <ul class="footer__social-list">
+                    <li>
+                        <a href="tel:+998990807732" class="footer__social-links">
+                            <img src="{% static 'shop/assets/icons/phone.svg' %}" alt="phone">
+                            +998 (98) 180-18-08
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/mensbrand44?igsh=MWJ1bmhkaGs5ODU1ag==" target="_blank" class="footer__social-links">
+                            <img src="{% static 'shop/assets/icons/inst.svg' %}" alt="insta">
+                            INSTAGRAM
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/mensbrand44" target="_blank" class="footer__social-links">
+                            <img src="{% static 'shop/assets/icons/tele.svg' %}" alt="telegram" height="20px" width="40px">
+                            MEN'S BRAND
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.footer__social -->
+        </div>
+        <!-- /.footer__content -->
+    </div>
+    <!-- /.container -->
+</footer>

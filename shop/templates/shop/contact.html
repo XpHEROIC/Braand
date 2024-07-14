@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+Контакты
+{% block poster %}
+
+{% endblock poster %}
+
+{% endblock title %}
+
+
+{% block main %}    <!-- /.nav -->
+
+
+<!-- /.header -->
+
+
+<main class="main">
+    <div class="container">
+        <section class="contact__section">
+            <h1 class="contact__section-title">Свяжитесь с нами</h1>
+            <div class="contact__section-content">
+                <form class="contact__section-form" method="post" action="">
+                    {% csrf_token %}
+                    <div class="contact__section-inputs">
+                        <div class="input__title">
+                            <h2>Ваше имя</h2>
+                            {{ review_form.name }}
+                        </div>
+                        <div class="input__title">
+                            <h2>Ваш e-mail</h2>
+                            {{ review_form.email }}
+                        </div>
+                    </div>
+                    <h2 class="textarea__title">Сообщение</h2>
+                    {{ review_form.text }}
+                    <div class="contact__section-btns">
+                        <button type="submit" class="btn btns__send">Отправить</button>
+                    </div>
+                </form>
+                <div class="contact__section-list">
+                    <ul class="contact__social-list">
+                        <li>
+                            <a href="tel:+998991801808" class="contact__social-links">
+                                <img src="{% static 'shop/assets/icons/phone.svg' %}" alt="phone">
+                                +998 (95) 833-66-33
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/mensbrand44?igsh=MWJ1bmhkaGs5ODU1ag==" target="_blank"
+                               class="contact__social-links">
+                                <img src="{% static 'shop/assets/icons/inst.svg' %}" alt="insta">
+                                INSTAGRAM
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/mensbrand44" target="_blank"
+                               class="contact__social-links">
+                                <img src="{% static 'shop/assets/icons/tele.svg' %}" alt="mail" height="20px"
+                                     width="40px">
+                                MEN'S BRAND
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p class="contact__adress">Вещевой рынок куйлюк, магазин 44</p>
+                    <pre>
+
+                    </pre>
+
+                    <p class="contact__adress">📣 Большой ассортимент мужской одежды по доступным ценам и хорошего
+                        качества❗️</p>
+
+                     <p class="contact__adress">    🚶‍♂️ Дорогие покупатели, теперь не нужно тратить время и долго ходить по рынкам в поисках
+                    одежды. </p>
+
+                    <p class="contact__adress">    💎 Здесь вы можете выбрать подходящую для себя мужскую одежду любого типа. </p>
+
+                    <p class="contact__adress">    Ⓜ️ Наш адрес: Вещевой рынок "Куйлюк Универсал Савдо Мажмуаси" магазин №44!!! </p>
+
+                    <p class="contact__adress">   ✅ Подписывайтесь на наш канал и выбирайте лучшую одежду! </p>
+
+                     <p class="contact__adress">    🛍 Хороших покупок дорогие друзья!!!</p>
+
+
+                </div>
+            </div>
+            <h1 class="contact__section-title">Адрес нашей компании</h1>
+            <div class="contact__card">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000.249952571461!2d69.32938407579869!3d41.23811297131921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae5e54e14a66f1%3A0x527bfc5180064899!2z0JLQtdGJ0LXQstC-0Lkg0YDRi9C90L7QuiDQmtGD0LnQu9GO0Lo!5e0!3m2!1sru!2s!4v1719466282005!5m2!1sru!2s"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </div>
+    <!-- /.container -->
+</main>
+<!-- /.main -->
+{% endblock main %}
+
+<!-- /.footer -->

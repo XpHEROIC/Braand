@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% block poster %}
+
+{% endblock poster %}
+
+{% endblock title %}
+
+
+{% block main %}
+
+<main class="main">
+    <div class="registeration">
+        <div class="container">
+            <div class="registeration__content">
+                <form class="registeration__form active" method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <h2 class="registeration__title products__title">Регистрация</h2>
+                    <div class="registeration__form-grid">
+                        <div class="input__title">
+                        <h2 class="input__title">Имя пользователя</h2>
+                        {{ form2.username }}
+                        <h2 class="input__title">Имя</h2>
+                        {{ form2.first_name }}
+                        <h2 class="input__title">Фамилия</h2>
+                        {{ form2.last_name }}
+                        <h2 class="input__title">Электронная почта</h2>
+                        {{ form2.email }}
+                        <h2 class="input__title">Телефон</h2>
+                        {{ form2.number }}
+                        <h2 class="input__title">Придумайте пароль</h2>
+                        {{ form2.password1 }}
+                        <h2 class="input__title">Подтвердить пароль</h2>
+                        {{ form2.password2 }}
+                    </div>
+                    <div class="registeration__btns">
+                        <button class="btn registeration__btn" type="submit">Подтвердить</button>
+                        <a href="{%  url 'login' %}" class="registeration__links">Уже есть аккаунт? </a>
+                    </div>
+                    <button class="btn registeration__btn-login _revers" type="submit">Войти</button>
+                    </div>
+                </form>
+
+                <form class="registeration__form" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <h2 class="registeration__title products__title">Авторизация</h2>
+                    <div class="registeration__form-grid">
+                        <div class="input__title">
+                        <h2 class="input__title">Имя пользователя</h2>
+                        {{ form.username }}
+                        <h2 class="input__title mt-3">Пароль</h2>
+                        {{ form.password }}
+                        </div>
+                    </div>
+                    <button class=" btn registeration__btn-login _auth " type="submit">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock main %}
+
+
+
+
+

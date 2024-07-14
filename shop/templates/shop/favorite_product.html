@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% block poster %}
+
+{% endblock poster %}
+
+{% endblock title %}
+
+
+{% block main %}
+
+<main>
+<h2 class="text-center favorites__title">Мое избранное</h2>
+
+    <div class="container">
+        <div class="favorites">
+            <div class="products__content">
+    {% for product in products %}
+    {% include 'shop/components/_product_card.html' %}
+    {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock main %}

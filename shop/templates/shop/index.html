@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+<main>
+    <h2 class="products__title">Хиты продаж</h2>
+
+    {% if '/search/' in request.path %}
+    {% for product in categories %}
+    {% include 'shop/components/_product_card.html' %}
+    {% endfor %}
+    {% else %}
+    {% for category in categories %}
+    {% if category.subcategories.all %}
+    <!-- /.products__item -->
+    {% for cat in category.subcategories.all %}
+
+    <div class="products__content">
+        {% for product in cat.products.all %}
+        {% include 'shop/components/_product_card.html' %}
+        {% endfor %}
+        {% endfor %}
+
+
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <!-- /.products__content -->
+
+
+    <!-- /.products -->
+
+
+</main>
+{% endblock main %}

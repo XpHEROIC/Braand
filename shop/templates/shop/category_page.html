@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% block poster %}
+
+{% endblock poster %}
+
+{% endblock title %}
+
+
+{% block main %}
+
+<main>
+
+
+    {% for product in products %}
+    {% include 'shop/components/_product_card.html' %}
+    {% endfor %}
+</main>
+
+{% endblock main %}

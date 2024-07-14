@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% block poster %}
+
+{% endblock poster %}
+
+{% endblock title %}
+
+
+{% block main %}
+
+<main class="main">
+    <div class="profile">
+        <div class="container">
+            <div class="profile__content">
+                <form class="profile__form" method="post">
+                    {% csrf_token %}
+                    <h2 class="profile__title">Личные данные</h2>
+                    <div class="profile__form-grid">
+
+                        <div class="input__title">
+                            <h2>Имя</h2>
+                            <input type="text" name="name" value="{{ form.name.value }}" class="contact__section-input">
+                        </div>
+                        <div class="input__title">
+                            <h2>E-mail</h2>
+                            <input type="email" name="email" value="{{ form.email.value }}" class="contact__section-input">
+                        </div>
+                        <div class="input__title">
+                            <h2>Фамилия</h2>
+                            <input type="text" name="last_name" value="{{ form.last_name.value }}" class="contact__section-input">
+                        </div>
+                        <div class="input__title">
+                            <h2>Номер телефона</h2>
+                            <input type="tel" name="number" value="{{ form.number.value }}" class="contact__section-input">
+                        </div>
+                        <div class="input__title">
+                            <h2>Город</h2>
+                            <input type="text" name="city" value="{{ form.city.value }}" class="contact__section-input">
+                        </div>
+                        <div></div>
+                        <div class="input__title _span-two">
+                            <h2>Улица</h2>
+                            <input type="text" name="street" value="{{ form.street.value }}" class="contact__section-input">
+                        </div>
+                        <div class="input__title">
+                            <h2>Дом/Корпус</h2>
+                            <input type="text" name="house" value="{{ form.house.value }}" class="contact__section-input">
+                        </div>
+                    </div>
+                    <button class="btn profile__btn">Изменить</button>
+
+                </form>
+                <div class="profile__orders">
+                    <h2 class="profile__title">Мои заказы</h2>
+
+                    <table class="profile__table">
+                        <tr>
+                            <td colspan="4">Товар</td>
+                            <td>Цена</td>
+                            <td>Кол-во</td>
+                            <td>Дата</td>
+                            <td>Статус</td>
+                        </tr>
+                        {% for item in products %}
+                        <tr>
+                            <td colspan="4" class="profile__title-adaptive">
+                                <div class="tabel__item">
+                                    <img src="{{ item.product.get_image_product }}" alt="product">
+                                    <span>{{ item.product.title }}</span>
+                                </div>
+                            </td>
+                            <td class="profile__tabel-data">{{ item.get_total_price }}</td>
+                            <td class="profile__tabel-data">{{ item.quantity }}</td>
+                            <td class="profile__tabel-data">{{ item.product.created_at }}</td>
+                            <td class="profile__tabel-data">Ожидается</td>
+                        </tr>
+                        {% endfor %}
+
+                        <!-- Не трогать - это заглушка для корректного отображения таблицы -->
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <!-- Не трогать - это заглушка для корректного отображения таблицы -->
+                    </table>
+                    <a href="{% url 'cart' %}" class="profile__orders-link">Смотреть всё</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock main %}

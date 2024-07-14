@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="shortcut icon" type="image" href="{% static 'shop/assets/icons/lof.png' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'components/_style.html' %}
+    <title>
+
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+    <!-- Css - Стили -->
+
+</head>
+
+<body>
+
+{% include 'components/_navbar.html' %}
+<!-- /.nav -->
+<div class="container">
+    <div class="header__content">
+<ul class="messages">
+    {% for message in messages %}
+    <li class="message {{ message.tags }}">
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+
+
+        {% include 'components/_header.html' %}
+    </div>
+</div>
+<div class="wrapper">
+
+    <header class="header">
+
+        {% block poster %}
+        {% if not '/search/' in request.path %}
+        {% include 'components/_slider.html' %}
+        {% endif %}
+        {% endblock poster %}
+        <!-- /.container -->
+    </header>
+    <!-- /.header -->
+
+    {% block main %}
+
+    {% endblock main %}
+    <!-- /.main -->
+    {% include 'components/_footer.html' %}
+
+    <!-- /.footer -->
+</div>
+<!-- /.wrapper -->
+
+{% include 'components/_script.html' %}
+<!-- Js - скрипты -->
+</body>
+
+</html>

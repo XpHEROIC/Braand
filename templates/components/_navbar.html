@@ -1,0 +1,73 @@
+{% load static %}
+{% load shop_tags %}
+<nav class="nav">
+    <div class="container _nav">
+        <div class="nav__content">
+            <div class="nav__content-bars">
+                <h2 class="nav__title">Меню</h2>
+                <a href="#!" class="nav__bars-exit">
+                    <img src="{% static 'shop/assets/icons/exit.svg' %}" alt="exit">
+                </a>
+            </div>
+            <ul class="nav__list">
+                <li>
+                    <a href="{% url 'index' %}" class="nav__list-links">
+                        <img src="{% static 'shop/assets/icons/home.svg' %}" alt="home">
+                        Главная
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav__list-links">
+                        <img src="{% static 'shop/assets/icons/aboute.svg' %}" alt="aboute">
+                        О нас
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}" class="nav__list-links">
+                        <img src="{% static 'shop/assets/icons/contacts.svg' %}" alt="contacts">
+                        Связаться с нами
+                    </a>
+                </li>
+            </ul>
+            <!-- /.nav__list -->
+            <ul class="nav__contacts">
+                <li>
+                    <a href="tel: +998 (99) 080-77-32" class="nav__contacts-links">
+                        <i class="far fa-phone-alt"></i>
+                        +998 (95) 833-66-33
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}" class="nav__contacts-links">
+                        <i class="far fa-truck"></i>
+                        Доставка
+                    </a>
+                </li>
+            </ul>
+            <!-- /.nav__contacts -->
+
+        </div>
+        <!-- /.nav__content -->
+    </div>
+    <!-- /.container -->
+    <ul class="nav__list _categories">
+        <li>
+            <h2 class="nav__title nav__title-categories">Категории</h2>
+        </li>
+        {% get_categories as categories %}
+    {% for category in categories %}
+    <li>
+        <a href="{{ category.get_absolute_url }}" class="nav__list-links">
+                                <span class="header__list-img">
+                                    {% if category.image %}
+                                    <img src="{{ category.image.url }}" alt="icons" width="14" height="14">
+                                    {% else %}
+                                    {% endif %}
+                                </span>
+            <pre>    </pre>{{ category.title }}
+        </a>
+    </li>
+    {% endfor %}
+    </ul>
+    <!-- /.nav__catigories -->
+</nav>

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load shop_tags %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block poster %}
+
+{% endblock poster %}
+
+{% block main %}
+
+        <div class="container">
+            <div class="header__content">
+                <!-- /.nav__catigories -->
+                <div class="product__slider">
+                    <div class="product__slider-content">
+                            <div class="sliderLines">
+                                {% for image in product.images.all %}
+                                <div class="product__slider-item active">
+                                    <img src="{{ image.image.url }}" alt="banner" width="10%" height="430px"
+                                        class="product__slider-img">
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="product__slider-panel">
+
+                                <ul class="product__slider-indicators">
+                                    {% for image in product.images.all %}
+                                    <li>
+                                        <a href="#!" class="indicators__links active">
+                                            <img src="{{ image.image.url }}" alt="products" width="40px" height="35px">
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+
+                                <div class="product__slider-btns">
+                                    <button class="btn__next">
+                                        <img src="{% static 'shop/assets/icons/arrow-black.svg' %}" alt="arrow">
+                                    </button>
+                                    <button class="btn__prev">
+                                        <img src="{% static 'shop/assets/icons/arrow-black.svg' %}" alt="arrow">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="product__slider-parameters">
+                        <div class="product__raiting">
+                            <div class="product__raiting-body">
+                                <div class="product__raiting-active"></div>
+                                <div class="product__raiting-items">
+                                    <input type="radio" name="raiting" value="1" class="product__raiting-links">
+                                    <input type="radio" name="raiting" value="2" class="product__raiting-links">
+                                    <input type="radio" name="raiting" value="3" class="product__raiting-links">
+                                    <input type="radio" name="raiting" value="4" class="product__raiting-links">
+                                    <input type="radio" name="raiting" value="5" class="product__raiting-links">
+                                </div>
+                            </div>
+                            <div class="product__raiting-value">5.0</div>
+                        </div>
+                        <h1 class="product__title">{{ product.title }}</h1>
+                        <span class="product__categories">{{ product.category }}</span>
+                        <div class="product__links">
+                            <h2 class="product__links-price"><span>{{ product.price|floatformat:0|intcomma }}</span> uzs</h2>
+                            {% if product.quantity > 0  %}
+                            <a href="{% url 'to_cart' product.pk 'add' %}" class="product__links-buy">Купить</a>
+                            {% else %}
+                            <a href="" class="product__links-buy">Нет</a>
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                            {% get_favorite_products request.user as fav_products %}
+                            {% endif %}
+                            {% if product in fav_products and  request.user.is_authenticated %}
+                            <a href="{% url 'add_favorite' product.slug %}" class="products__item-heart active product__links-add">
+                                <span>Добавить в желаемое</span></a>
+                            {% else %}
+                            <a href="{% url 'add_favorite' product.slug %}" class="products__item-heart product__links-add">
+                                <span>Добавить в желаемое</span></a>
+                            {% endif %}
+                        </div>
+                        <ul class="paremeters__list">
+
+
+<!--                                    <img src="{% static 'shop/assets/icons/arrow-black.svg' %}" alt="arrow-down">-->
+                                </a>
+<!--                                <div class="list__drop"></div>-->
+                            </li>
+                            <li class="paremetes__list-item">
+                                <h3 class="paremeters__list-title">Количество</h3>
+                                <a href="#!" class="paremeters__list-btn">
+                                    <div class="paremeters__count"><span>{{ product.quantity }}</span></div>
+<!--                                    <img src="{% static 'shop/assets/icons/arrow-black.svg' %}" alt="arrow-down">-->
+                                </a>
+<!--                                <div class="list__drop"></div>-->
+
+                            </li>
+                            <li class="paremetes__list-item">
+                                <h3 class="paremeters__list-title">Размер (Д × Ш × В)</h3>
+                                <a href="#!" class="paremeters__list-btn">
+                                    <div class="paremeters__size">{{ product.deep }} СМ × {{ product.weigh }} СМ × {{ product.height }} СМ</div>
+<!--                                    <img src="{% static 'shop/assets/icons/arrow-black.svg' %}" alt="arrow-down">-->
+                                </a>
+<!--                                <div class="list__drop"></div>-->
+                            </li>
+                        </ul>
+
+                        <p class="product__descr">
+                            <span class="product__descr-title">Описание</span>
+                            {{ product.description }}
+                        </p>
+                    </div>
+                </div>
+                <!-- /.product__slider -->
+
+
+            </div>
+            <!-- /.header__content -->
+        </div>
+        <!-- /.container -->
+
+
+    <!-- /.header -->
+    <!-- /.main -->
+{% endblock main %}
